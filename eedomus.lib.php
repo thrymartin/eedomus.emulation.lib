@@ -1,5 +1,4 @@
 <?php
-
 /******************************************************************
  librairie d'émulation des fonctions spécifiques à l'eedomus
 http://doc.eedomus.com/view/Scripts#Scripts_.22Objets_connect.C3.A9s.22
@@ -44,4 +43,30 @@ function saveVariable($variable_name, $variable_content) {
 function loadVariable($variable_name) {
   return $_COOKIE[$variable_name];
 }
+
+function jsonToXML($json)
+{
+  // function definition to convert array to xml
+  function array_to_xml( $data, &$xml_data ) {
+      foreach( $data as $key => $value ) {
+          if( is_numeric($key) ){
+              $key = 'item'.$key; //dealing with <0/>..<n/> issues
+          }
+          if( is_array($value) ) {
+              $subnode = $xml_data->addChild($key);
+              array_to_xml($value, $subnode);
+          } else {
+              $xml_data->addChild("$key",htmlspecialchars("$value"));
+          }
+       }
+  }
+  //convert json to array
+  $arr = json_decode($json, true);
+  // creating object of SimpleXMLElement
+  $xml_data = new SimpleXMLElement('<?xml version="1.0"?><root></root>');
+  // function call to convert array to xml
+  array_to_xml($arr,$xml_data);
+  return $xml_data->asXML();
+}
+
  ?>
