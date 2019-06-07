@@ -7,7 +7,7 @@ script cree par twitter:@Havok pour la eedomus
 ****************************************************************/
 
 /*Exécute une requête HTTP/HTTPS et retourne son résultat sous forme de chaine de caractère.*/
-function httpQuery($url, $action = 'GET'/*GET,POST,PUT,DELETE*/, $post = NULL, $oauth_token = NULL, $headers = NULL, $use_cookies = false, $ignore_errors = false) {
+function httpQuery($url, $action = 'GET'/*GET,POST,PUT,DELETE*/, $post = NULL, $oauth_token = NULL, $headers = NULL, $use_cookies = false, $ignore_errors = false, &$info = null) {
 
   $curl = curl_init(); //Première étape, initialiser une nouvelle session cURL.
   curl_setopt($curl, CURLOPT_URL, $url); //Il va par exemple falloir lui fournir l'url de la page à récupérer.
@@ -22,6 +22,7 @@ function httpQuery($url, $action = 'GET'/*GET,POST,PUT,DELETE*/, $post = NULL, $
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); //Cette option permet d'indiquer que nous voulons recevoir le résultat du transfert au lieu de l'afficher.
 
   $return = curl_exec($curl); //Il suffit ensuite d'exécuter la requête
+  $info = curl_getinfo($curl); //recupération des infos curl
   curl_close($curl);
   return $return;
 }
