@@ -96,4 +96,15 @@ Si $value_text est à true, le tableau contiendra également ["value_text"]=> xx
   return $periphValue;
 }
 
+function xpath($xml, $path)
+{
+  $xmlSource = new SimpleXMLElement($xml);
+  $result = $xmlSource->xpath($path);
+  while(list( , $node) = each($result)) {
+    break;
+  }
+
+  return $node;
+}
+
  ?>

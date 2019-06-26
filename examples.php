@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
 require("eedomus.lib.php");
-
+/*
 $jsonExemple = '{"menu": {
   "id": "file",
   "value": "File",
@@ -15,17 +15,20 @@ $jsonExemple = '{"menu": {
     ]
   }
 }}';
-echo jsonToXML($jsonExemple);
+echo jsonToXML($jsonExemple);*/
 
-/*
-<menu id="file" value="File">
-  <popup>
-    <menuitem value="New" onclick="CreateNewDoc()" />
-    <menuitem value="Open" onclick="OpenDoc()" />
-    <menuitem value="Close" onclick="CloseDoc()" />
-  </popup>
-</menu>
-*/
+$string = <<<XML
+<a>
+ <b>
+  <c>stuff</c>
+ </b>
+ <d>
+  <c>code</c>
+ </d>
+</a>
+XML;
+
+echo xpath($string,'/a/b/c');
 
 
 ?>
