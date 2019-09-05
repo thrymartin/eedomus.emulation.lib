@@ -15,7 +15,7 @@ $jsonExemple = '{"menu": {
     ]
   }
 }}';
-echo jsonToXML($jsonExemple);*/
+echo jsonToXML($jsonExemple);
 
 $string = <<<XML
 <a>
@@ -28,7 +28,9 @@ $string = <<<XML
 </a>
 XML;
 
-echo xpath($string,'/a/b/c');
+echo xpath($string,'/a/b/c');*/
+
+echo sdk_get_input();
 
 
 ?>

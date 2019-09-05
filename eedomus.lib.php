@@ -107,4 +107,14 @@ function xpath($xml, $path)
   return $node;
 }
 
+function sdk_get_input() //a vérifier
+  {
+    //Renvoi le contenu de php://input
+    // get the raw POST data
+    $rawData = file_get_contents("php://input");
+
+    // this returns null if not valid json
+    return json_decode($rawData);
+  }
+
  ?>
