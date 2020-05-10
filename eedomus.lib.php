@@ -37,10 +37,22 @@ function sdk_json_decode($json) {
   return json_decode($json,true);
 }
 
+// avec une seule variable (définir $return)
 function getArg($var, $mandatory = true, $default = ' ') {
   $return = '';
   if (isset($_GET[$var])) $return = $_GET[$var];
   return $return;
+}
+
+// http://localhost/script/?exec=plugin.php&var1=[VAR1]&var2=[VAR2]&var1=[VAR3]
+// code API du périphérique appelant
+function getArg($var, $mandatory = true, $default = ' ') {
+	if ($var=="var1")							{  $return = "valeur1";}
+	if ($var=="var2")							{  $return = "valeur2";}
+	if ($var=="var3")							{  $return = "valeur3";}
+	if ($var=="eedomus_controller_module_id")	{  $return = 1234567;}
+if (isset($_GET[$var])) $return = $_GET[$var];
+return $return;
 }
 
 function saveVariable($variable_name, $variable_content) {
